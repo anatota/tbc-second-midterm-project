@@ -19,7 +19,7 @@ public class DefaultMapSteps {
         return this;
     }
 
-    public boolean latitudesAreInRange(double minLat, double maxLat, double minLng, double maxLng) {
+    public boolean geoLocationIsInRange(double minLat, double maxLat, double minLng, double maxLng) {
         locationPage.loadMarkers();
 
         if (locationPage.markers.isEmpty()) return false;

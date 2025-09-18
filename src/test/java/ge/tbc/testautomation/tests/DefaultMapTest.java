@@ -34,7 +34,7 @@ public class DefaultMapTest {
     @Test
     public void defaultMapStateTest() {
         defaultMapSteps.checkAllTabIsActive(LocationConstants.DEFAULT_BUTTON_TEXT);
-        Assert.assertTrue(defaultMapSteps.latitudesAreInRange(LocationConstants.TBILISI_MIN_LAT, LocationConstants.TBILISI_MAX_LAT, LocationConstants.TBILISI_MIN_LNG, LocationConstants.TBILISI_MAX_LNG));
-        Assert.assertFalse(defaultMapSteps.latitudesAreInRange(1, 2, 3, 4));
+        Assert.assertTrue(defaultMapSteps.geoLocationIsInRange(LocationConstants.TBILISI_MIN_LAT, LocationConstants.TBILISI_MAX_LAT, LocationConstants.TBILISI_MIN_LNG, LocationConstants.TBILISI_MAX_LNG));
+        Assert.assertFalse(defaultMapSteps.geoLocationIsInRange(1, 2, 3, 4));
     }
 }
