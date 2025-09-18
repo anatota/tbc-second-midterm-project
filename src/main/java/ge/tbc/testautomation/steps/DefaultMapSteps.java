@@ -18,4 +18,27 @@ public class DefaultMapSteps {
         assertThat(locationPage.defaultTab).containsText(text);
         return this;
     }
+
+    public boolean latitudesAreInRange(double minLat, double maxLat, double minLng, double maxLng) {
+        locationPage.loadMarkers();
+
+        if (locationPage.markers.isEmpty()) return false;
+
+        long inRange = locationPage.markers.stream()
+                .map(marker -> marker.getAttribute("position"))
+                .filter(pos -> {
+                    if (pos == null || !pos.contains(",")) return false;
+                    try {
+                        String[] parts = pos.split(",");
+                        double lat = Double.parseDouble(parts[0]);
+                        double lng = Double.parseDouble(parts[1]);
+                        return lat >= minLat && lat <= maxLat && lng >= minLng && lng <= maxLng;
+                    } catch (Exception e) {
+                        return false;
+                    }
+                })
+                .count();
+
+        return inRange > 0;
+    }
 }
