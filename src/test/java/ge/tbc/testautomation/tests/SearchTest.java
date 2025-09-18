@@ -2,34 +2,43 @@ package ge.tbc.testautomation.tests;
 
 import com.microsoft.playwright.*;
 import ge.tbc.testautomation.data.Constants;
+import ge.tbc.testautomation.data.SearchConstants;
+import ge.tbc.testautomation.runners.BaseTest;
+import ge.tbc.testautomation.steps.BaseSteps;
 import ge.tbc.testautomation.steps.SearchSteps;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-public class SearchTest {
-    Playwright playwright;
-    Browser browser;
-    Page page;
-    BrowserContext context;
-
+public class SearchTest extends BaseTest {
+    BaseSteps baseSteps;
     SearchSteps searchSteps;
+    private boolean isFirstRun = true;
 
-    @BeforeClass
-    public void setUp() {
-        playwright = Playwright.create();
-        BrowserType.LaunchOptions launchOptions = new BrowserType.LaunchOptions();
-        launchOptions.setHeadless(false).setSlowMo(1000); // remove this later
-        browser = playwright.chromium().launch(launchOptions);
-        context = browser.newContext();
-        page = context.newPage();
+    @BeforeMethod
+    public void setUpBeforeMethod() {
+        baseSteps = new BaseSteps(page);
         searchSteps = new SearchSteps(page);
         page.navigate(Constants.MAIN_PAGE);
+        if(isFirstRun) {
+            baseSteps.rejectCookies();
+            isFirstRun = false;
+        }
     }
 
-    @AfterClass
-    public void tearDown() {
-        context.close();
-        browser.close();
-        playwright.close();
+    @Test
+    public void searchSiteTest() {
+        searchSteps
+                .openSearch()
+                .fillInput(SearchConstants.SEARCH_QUERY);
+        Assert.assertTrue(searchSteps.validateSearchResults(SearchConstants.SEARCH_QUERY));
+    }
+
+    @Test
+    public void searchByInvalidKeywordTest() {
+        searchSteps
+                .openSearch()
+                .fillInput(SearchConstants.INVALID_SEARCH_QUERY)
+                .resultNotFoundValidation();
     }
 }
