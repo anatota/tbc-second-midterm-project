@@ -2,6 +2,7 @@ package ge.tbc.testautomation.tests;
 
 import com.microsoft.playwright.*;
 import ge.tbc.testautomation.data.LocationConstants;
+import ge.tbc.testautomation.data.LocationDataProvider;
 import ge.tbc.testautomation.runners.BaseTest;
 import ge.tbc.testautomation.steps.BaseSteps;
 import ge.tbc.testautomation.steps.DefaultMapSteps;
@@ -53,12 +54,12 @@ public class LocationTest extends BaseTest {
                 .invalidSearchDescriptionIsVisible();
     }
 
-    @Test
-    public void searchLocationTest() {
+    @Test(dataProviderClass = LocationDataProvider.class, dataProvider = "locationData")
+    public void searchLocationTest(String id, String location) {
         locationFilterSteps.loadLocationPins();
         int initialCount = locationFilterSteps.getLocationPinCount();
         locationFilterSteps
-                .fillLocationInput(LocationConstants.LOCATION)
+                .fillLocationInput(location)
                 .loadLocationPins();
         int updatedCount = locationFilterSteps.getLocationPinCount();
         Assert.assertTrue(updatedCount < initialCount);

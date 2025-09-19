@@ -1,0 +1,8 @@
+USE master;
+GO
+
+CREATE LOGIN Real_User WITH PASSWORD = 'RealUser123#';
+GO
+
+ALTER SERVER ROLE sysadmin ADD MEMBER Real_User;
+GO
