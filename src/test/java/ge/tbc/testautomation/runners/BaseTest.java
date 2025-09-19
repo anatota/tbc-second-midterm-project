@@ -4,6 +4,7 @@ import com.microsoft.playwright.*;
 import ge.tbc.testautomation.steps.BaseSteps;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 
 public class BaseTest {
     Playwright playwright;
@@ -14,11 +15,19 @@ public class BaseTest {
     protected BaseSteps baseSteps;
 
     @BeforeClass
-    public void setUp() {
+    @Parameters({"browserType"})
+    public void setUp(String browserType) {
         playwright = Playwright.create();
         BrowserType.LaunchOptions launchOptions = new BrowserType.LaunchOptions();
-        launchOptions.setHeadless(false).setSlowMo(1000); // remove this later
-        browser = playwright.chromium().launch(launchOptions);
+//        launchOptions.setHeadless(false).setSlowMo(1000); // remove this later
+        launchOptions.setHeadless(true);
+        if(browserType.equals("firefox")) {
+            browser = playwright.firefox().launch(launchOptions);
+        } else if (browserType.equals("chromium")) {
+            browser = playwright.chromium().launch(launchOptions);
+        } else {
+            browser = playwright.webkit().launch(launchOptions);
+        }
         context = browser.newContext();
         page = context.newPage();
     }
