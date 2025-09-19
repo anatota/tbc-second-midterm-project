@@ -15,20 +15,27 @@ public class BaseTest {
     protected BaseSteps baseSteps;
 
     @BeforeClass
-    @Parameters({"browserType"})
-    public void setUp(String browserType) {
+    @Parameters({"browserType", "device"})
+    public void setUp(String browserType, String device) {
         playwright = Playwright.create();
         BrowserType.LaunchOptions launchOptions = new BrowserType.LaunchOptions();
-//        launchOptions.setHeadless(false).setSlowMo(1000); // remove this later
-        launchOptions.setHeadless(true);
-        if(browserType.equals("firefox")) {
-            browser = playwright.firefox().launch(launchOptions);
-        } else if (browserType.equals("chromium")) {
+        launchOptions.setHeadless(false).setSlowMo(1000); // remove this later
+//        launchOptions.setHeadless(true);
+
+        if(device.equals("mobile")) {
             browser = playwright.chromium().launch(launchOptions);
+            context = browser.newContext(new Browser.NewContextOptions().setViewportSize(393, 852));
         } else {
-            browser = playwright.webkit().launch(launchOptions);
+            if(browserType.equals("firefox")) {
+                browser = playwright.firefox().launch(launchOptions);
+            } else if (browserType.equals("chromium")) {
+                browser = playwright.chromium().launch(launchOptions);
+            } else {
+                browser = playwright.webkit().launch(launchOptions);
+            }
+            context = browser.newContext();
         }
-        context = browser.newContext();
+
         page = context.newPage();
     }
 

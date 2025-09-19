@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="MobileSuite">
+    <test name="MobileTest">
+        <parameter name="browserType" value="chromium"/>
+        <parameter name="device" value="mobile"/>
+        <classes>
+<!--            <class name="ge.tbc.testautomation.tests.GlobalNavigationTest"/>-->
+            <class name="ge.tbc.testautomation.tests.LocationTest"/>
+<!--            <class name="ge.tbc.testautomation.tests.ProductDetailsTest"/>-->
+<!--            <class name="ge.tbc.testautomation.tests.SearchTest"/>-->
+        </classes>
+    </test>
+</suite>

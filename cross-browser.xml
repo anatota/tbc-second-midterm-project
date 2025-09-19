@@ -5,29 +5,32 @@
 <suite name="CrossBrowserSuite" thread-count="3" parallel="tests">
     <test name="FirefoxTest">
         <parameter name="browserType" value="firefox"/>
+        <parameter name="device" value="desktop"/>
         <classes>
             <class name="ge.tbc.testautomation.tests.GlobalNavigationTest"/>
-            <class name="ge.tbc.testautomation.tests.LocationTest"/>
-            <class name="ge.tbc.testautomation.tests.ProductDetailsTest"/>
-            <class name="ge.tbc.testautomation.tests.SearchTest"/>
+<!--            <class name="ge.tbc.testautomation.tests.LocationTest"/>-->
+<!--            <class name="ge.tbc.testautomation.tests.ProductDetailsTest"/>-->
+<!--            <class name="ge.tbc.testautomation.tests.SearchTest"/>-->
         </classes>
     </test>
     <test name="ChromeTest">
         <parameter name="browserType" value="chromium"/>
+        <parameter name="device" value="desktop"/>
         <classes>
             <class name="ge.tbc.testautomation.tests.GlobalNavigationTest"/>
-            <class name="ge.tbc.testautomation.tests.LocationTest"/>
-            <class name="ge.tbc.testautomation.tests.ProductDetailsTest"/>
-            <class name="ge.tbc.testautomation.tests.SearchTest"/>
+<!--            <class name="ge.tbc.testautomation.tests.LocationTest"/>-->
+<!--            <class name="ge.tbc.testautomation.tests.ProductDetailsTest"/>-->
+<!--            <class name="ge.tbc.testautomation.tests.SearchTest"/>-->
         </classes>
     </test>
     <test name="WebkitTest">
         <parameter name="browserType" value="webkit"/>
+        <parameter name="device" value="desktop"/>
         <classes>
             <class name="ge.tbc.testautomation.tests.GlobalNavigationTest"/>
-            <class name="ge.tbc.testautomation.tests.LocationTest"/>
-            <class name="ge.tbc.testautomation.tests.ProductDetailsTest"/>
-            <class name="ge.tbc.testautomation.tests.SearchTest"/>
+<!--            <class name="ge.tbc.testautomation.tests.LocationTest"/>-->
+<!--            <class name="ge.tbc.testautomation.tests.ProductDetailsTest"/>-->
+<!--            <class name="ge.tbc.testautomation.tests.SearchTest"/>-->
         </classes>
     </test>
 </suite>

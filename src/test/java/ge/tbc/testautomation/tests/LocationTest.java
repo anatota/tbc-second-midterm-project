@@ -9,6 +9,7 @@ import ge.tbc.testautomation.steps.DefaultMapSteps;
 import ge.tbc.testautomation.steps.LocationFilterSteps;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
@@ -18,14 +19,21 @@ public class LocationTest extends BaseTest {
     DefaultMapSteps defaultMapSteps;
     LocationFilterSteps locationFilterSteps;
 
+    @Parameters({"device"})
     @BeforeMethod
-    public void setUpBeforeMethod() {
+    public void setUpBeforeMethod(String device) {
         if (page != null) {
             page.close();
         }
         browserContext = browser.newContext(new Browser.NewContextOptions()
                 .setGeolocation(LocationConstants.TBILISI_LATITUDE, LocationConstants.TBILISI_LONGITUDE)
                 .setPermissions(Arrays.asList("geolocation")));
+        if(device.equals("mobile")) {
+            browserContext = browser.newContext(new Browser.NewContextOptions()
+                    .setViewportSize(393, 852)
+                    .setGeolocation(LocationConstants.TBILISI_LATITUDE, LocationConstants.TBILISI_LONGITUDE)
+                    .setPermissions(Arrays.asList("geolocation")));
+        }
         context = browserContext;
         page = context.newPage();
 
