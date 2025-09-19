@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="MobileSuite">
+<suite name="MobileSuite" thread-count="2" parallel="classes">
     <test name="MobileTest">
         <parameter name="browserType" value="chromium"/>
         <parameter name="device" value="mobile"/>
@@ -13,7 +13,7 @@
             </class>
 <!--            <class name="ge.tbc.testautomation.tests.LocationTest"/>-->
 <!--            <class name="ge.tbc.testautomation.tests.ProductDetailsTest"/>-->
-<!--            <class name="ge.tbc.testautomation.tests.SearchTest"/>-->
+            <class name="ge.tbc.testautomation.tests.SearchTest"/>
         </classes>
     </test>
 </suite>
