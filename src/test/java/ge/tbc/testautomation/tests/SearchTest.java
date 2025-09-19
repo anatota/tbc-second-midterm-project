@@ -1,8 +1,7 @@
 package ge.tbc.testautomation.tests;
 
-import com.microsoft.playwright.*;
 import ge.tbc.testautomation.data.Constants;
-import ge.tbc.testautomation.data.SearchConstants;
+import ge.tbc.testautomation.data.DataSupplier;
 import ge.tbc.testautomation.runners.BaseTest;
 import ge.tbc.testautomation.steps.BaseSteps;
 import ge.tbc.testautomation.steps.SearchSteps;
@@ -26,19 +25,19 @@ public class SearchTest extends BaseTest {
         }
     }
 
-    @Test
-    public void searchSiteTest() {
+    @Test(dataProviderClass = DataSupplier.class, dataProvider = "validSearchKeywords")
+    public void searchSiteTest(String keyword) {
         searchSteps
                 .openSearch()
-                .fillInput(SearchConstants.SEARCH_QUERY);
-        Assert.assertTrue(searchSteps.validateSearchResults(SearchConstants.SEARCH_QUERY));
+                .fillInput(keyword);
+        Assert.assertTrue(searchSteps.validateSearchResults(keyword));
     }
 
-    @Test
-    public void searchByInvalidKeywordTest() {
+    @Test(dataProviderClass = DataSupplier.class, dataProvider = "invalidSearchKeywords")
+    public void searchByInvalidKeywordTest(String invalidKeyword) {
         searchSteps
                 .openSearch()
-                .fillInput(SearchConstants.INVALID_SEARCH_QUERY)
+                .fillInput(invalidKeyword)
                 .resultNotFoundValidation();
     }
 }
