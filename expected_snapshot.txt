@@ -1,0 +1,200 @@
+- banner:
+  - link:
+    - /url: /ka
+    - img
+  - link "ჩემთვის":
+    - /url: /ka
+  - link "ჩემი ბიზნესისთვის":
+    - /url: /ka/business
+  - button "თიბისი"
+  - button "arrow-right-outlined ციფრული ბანკი"
+  - text: globe-outlined EN
+  - button "search-outlined"
+- list:
+  - listitem:
+    - link "მთავარი":
+      - /url: /ka
+    - text: chevron-right-outlined
+  - listitem:
+    - link "სხვა პროდუქტები":
+      - /url: /ka/other-products
+    - text: chevron-right-outlined
+  - listitem:
+    - link "ფულადი გზავნილები":
+      - /url: /ka/other-products/money-transfers
+- img "ფულადი გზავნილები"
+- heading "სწრაფი ფულადი გზავნილები" [level=1]
+- paragraph: გაანაღდე ან გააგზავნე ფულადი გზავნილი მობაილბანკიდან სახლიდან გაუსვლელად, 24/7-ზე და ისარგებლე კონვერტაციის განსაკუთრებული კურსით
+- heading "გზავნილის სისტემები" [level=2]
+- text: გზავნილის სისტემები, რომლის საშუალებითაც შეძლებ გზავნილის გაგზავნას და მიღებას სასურველი მიმართულებით/მიმართულებიდან. FastTransfer currency - EUR/GEL/USD IntelExpress currency - EUR/GBP/GEL/USD MoneyGram currency - EUR/GEL/USD Ria currency - EUR/GEL/USD RicoGram currency - EUR/USD WesternUnion currency - EUR/GEL/USD ZolotayaKorona currency - EUR/GEL/RUB/USD
+- img "გზავნილის განაღდება"
+- heading "გზავნილის განაღდება მობაილბანკში" [level=1]
+- paragraph: ფულადი გზავნილის განაღდებას თიბისის როგორც მობაილ ბანკის, ასევე ინტერნეტ ბანკის მეშვეობით შეძლებ. მობაილ ბანკში გზავნილის განაღდებას რამდენიმე წუთში შეძლებ.
+- link "დეტალურად":
+  - /url: https://app.tbcbank.ge/YiId/fj04zmfr
+  - button "დეტალურად"
+- button "გზავნილის კონვერტაცია"
+- button "გზავნილის გაგზავნის საკომისიო"
+- spinbutton: "100"
+- text: USD
+- button "swap-alt-outlined"
+- spinbutton: "272.3"
+- text: GEL 1 USD = 2.723 GEL
+- img "Media-5"
+- heading "გააგზავნე და მიიღე ფულადი გზავნილი მობაილბანკში" [level=2]
+- text: ჩამოტვირთე აპლიკაცია
+- img "app-store"
+- img "google-play"
+- img "ემიგრანტები ვიდეო ბანკი"
+- heading "გზავნილის საკუთარ თავთან გაგზავნა" [level=1]
+- paragraph: თუ ხარ ემიგრანტი და გაქვს თიბისის, შესაბამისი ვალუტის ანგარიში, შეგიძლია საკუთარ თავს გაუგზავნო ფულადი გზავნილი.
+- button "დეტალურად"
+- heading "სესხი ფულადი გზავნილების საფუძველზე" [level=2]
+- link "consumer loan 1 სამომხმარებლო სესხი":
+  - /url: /ka/loans/consumer-loan
+  - img "consumer loan 1"
+  - heading "სამომხმარებლო სესხი" [level=3]
+- link "mortgage loan იპოთეკური სესხი":
+  - /url: /ka/loans/mortgage
+  - img "mortgage loan"
+  - heading "იპოთეკური სესხი" [level=3]
+- link "Installment განვადება":
+  - /url: /ka/loans/installment
+  - img "Installment"
+  - heading "განვადება" [level=3]
+- heading "ხშირად დასმული კითხვები" [level=2]
+- button "რომელი გზავნილების განაღდება შეიძლება ინტერნეტ და მობაილბანში? chevron-down-outlined":
+  - heading "რომელი გზავნილების განაღდება შეიძლება ინტერნეტ და მობაილბანში?" [level=3]
+  - text: chevron-down-outlined
+- button "როგორ უნდა გავანაღდო გზავნილი ინტერნეტ ბანკში? chevron-down-outlined":
+  - heading "როგორ უნდა გავანაღდო გზავნილი ინტერნეტ ბანკში?" [level=3]
+  - text: chevron-down-outlined
+- button "როგორ უნდა გავანაღდო გზავნილი მობაილბანკში? chevron-down-outlined":
+  - heading "როგორ უნდა გავანაღდო გზავნილი მობაილბანკში?" [level=3]
+  - text: chevron-down-outlined
+- button "რომელი გზავნილების განაღდება შეიძლება ქოლცენტრის დახმარებით? chevron-down-outlined":
+  - heading "რომელი გზავნილების განაღდება შეიძლება ქოლცენტრის დახმარებით?" [level=3]
+  - text: chevron-down-outlined
+- button "როგორ უნდა გავანაღდო გზავნილი ქოლცენტრიდან? chevron-down-outlined":
+  - heading "როგორ უნდა გავანაღდო გზავნილი ქოლცენტრიდან?" [level=3]
+  - text: chevron-down-outlined
+- button "რამდენ ხანში მივიღებ გამოგზავნილ თანხას? chevron-down-outlined":
+  - heading "რამდენ ხანში მივიღებ გამოგზავნილ თანხას?" [level=3]
+  - text: chevron-down-outlined
+- button "რა ინფორმაციის მითითება დამჭირდება გზავნილის გასანაღდებლად?* chevron-down-outlined":
+  - heading "რა ინფორმაციის მითითება დამჭირდება გზავნილის გასანაღდებლად?*" [level=3]
+  - text: chevron-down-outlined
+- button "რა მონაცემის მითითება დამჭირდება გზავნილის გაგზავნისას?* chevron-down-outlined":
+  - heading "რა მონაცემის მითითება დამჭირდება გზავნილის გაგზავნისას?*" [level=3]
+  - text: chevron-down-outlined
+- link "ჩემთვის":
+  - /url: /ka
+  - button "ჩემთვის"
+- link "სესხები":
+  - /url: /ka/loans
+  - button "სესხები"
+- link "ანაბრები":
+  - /url: /ka/deposits
+  - button "ანაბრები"
+- link "თიბისი ბარათი":
+  - /url: /ka/tbc-card
+  - button "თიბისი ბარათი"
+- link "ციფრული სერვისები":
+  - /url: /ka/digital-services
+  - button "ციფრული სერვისები"
+- link "სხვა პროდუქტები":
+  - /url: /ka/other-products
+  - button "სხვა პროდუქტები"
+- link "პირობები და ტარიფები":
+  - /url: /ka/terms-and-fees
+  - button "პირობები და ტარიფები"
+- link "ჩემი ბიზნესისთვის":
+  - /url: /ka/business
+  - button "ჩემი ბიზნესისთვის"
+- link "ფინანსირება":
+  - /url: /ka/business/financing
+  - button "ფინანსირება"
+- link "ვაჭრობის ფინანსირება":
+  - /url: /ka/business/trade-finance
+  - button "ვაჭრობის ფინანსირება"
+- link "ციფრული სერვისები":
+  - /url: /ka/business/digital-services
+  - button "ციფრული სერვისები"
+- link "ყოველდღიური ბანკინგი":
+  - /url: /ka/business/daily-banking
+  - button "ყოველდღიური ბანკინგი"
+- link "პირობები და ტარიფები":
+  - /url: /ka/terms-and-fees
+  - button "პირობები და ტარიფები"
+- link "საგადახდო სისტემები":
+  - /url: https://tbcpayments.ge/
+  - button "საგადახდო სისტემები"
+- link "თიბისი":
+  - /url: /ka/tbc/about-us
+  - button "თიბისი"
+- link "მისია და კულტურა":
+  - /url: /ka/tbc/about-us/mission-and-culture
+  - button "მისია და კულტურა"
+- link "სოციალური პასუხისმგებლობა":
+  - /url: /ka/corporate-social-responsibility
+  - button "სოციალური პასუხისმგებლობა"
+- link "კარიერა":
+  - /url: /ka/tbc/career
+  - button "კარიერა"
+- link "ფინანსური ინფორმაცია":
+  - /url: /ka/financial-highlights
+  - button "ფინანსური ინფორმაცია"
+- link "ინვესტორები":
+  - /url: https://tbcbankgroup.com/investors
+  - button "ინვესტორები"
+- text: დაგვიკავშირდი call-outlined
+- link "+995 32 2 27 27 27":
+  - /url: tel:+995322272727
+- text: chat-outlined
+- button "ჩატბოტი"
+- text: location-pin-outlined
+- link "მისამართები":
+  - /url: /ka/atms&branches
+- text: envelope-outlined
+- link "info@tbcbank.ge":
+  - /url: mailto:info@tbcbank.ge
+- text: user-outlined
+- link "ანონიმური მხილება":
+  - /url: /ka/anonymous-hotline
+- text: გადმოწერე ციფრული ბანკი
+- link:
+  - /url: https://tbcbank.onelink.me/YiId/x5o5jfc3
+  - button:
+    - img
+- link:
+  - /url: https://tbcbank.onelink.me/YiId/x5o5jfc3
+  - button:
+    - img
+- link "facebook-filled":
+  - /url: https://www.facebook.com/tbcbank
+- link "instagram-filled":
+  - /url: https://www.instagram.com/t_b_c_/
+- link "youtube-filled":
+  - /url: https://www.youtube.com/@TBCBankTV
+- link "linkedin-filled":
+  - /url: https://www.linkedin.com/company/tbc-bank/
+- text: მუქი თემა globe-outlined EN
+- img "footer-copyright-logo"
+- text: თიბისი ბანკი 2025 - უფლებები დაცულია
+- button "გარანტიის ვერიფიკაცია"
+- link "ხელშეკრულებები":
+  - /url: /ka/agreements
+- link "კონფიდენციალურობა":
+  - /url: /ka/privacy-policy
+- link "მომხმარებლის დაცვა":
+  - /url: /ka/consumer-protection
+- link "წესები და პირობები":
+  - /url: /ka/terms-and-conditions
+- link "currency-lari-outlined":
+  - /url: /ka/treasury-products
+  - button "currency-lari-outlined"
+- link "location-pin-outlined":
+  - /url: /ka/atms&branches
+  - button "location-pin-outlined"
+- button "chat-dots-filled"
+- button "kebab-menu-vertical-outlined"
