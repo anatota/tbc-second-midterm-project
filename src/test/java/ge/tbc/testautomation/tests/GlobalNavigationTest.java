@@ -6,6 +6,7 @@ import ge.tbc.testautomation.runners.BaseTest;
 import ge.tbc.testautomation.steps.BaseSteps;
 import ge.tbc.testautomation.steps.GlobalNavigationSteps;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class GlobalNavigationTest extends BaseTest {
@@ -25,11 +26,18 @@ public class GlobalNavigationTest extends BaseTest {
         }
     }
 
+    @Parameters({"device"})
     @Test
-    public void megaMenuElementsTest() {
-        globalNavigationSteps
-                .loadMenuItems()
-                .megaMenuIsVisibleAndMenuItemsAreActive();
+    public void megaMenuElementsTest(String device) {
+        if(device.equals("desktop")) {
+            globalNavigationSteps
+                    .loadMenuItems()
+                    .megaMenuIsVisibleAndMenuItemsAreActive();
+        } else {
+            globalNavigationSteps
+                    .clickOnHamburgerMenu()
+                    .megaMenuIsVisibleAndMenuItemsAreActiveOnMobile();
+        }
     }
 
     @Test(dataProviderClass = DataSupplier.class, dataProvider = "menuTitlesAndCrumbs")

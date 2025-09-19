@@ -6,8 +6,12 @@
         <parameter name="browserType" value="chromium"/>
         <parameter name="device" value="mobile"/>
         <classes>
-<!--            <class name="ge.tbc.testautomation.tests.GlobalNavigationTest"/>-->
-            <class name="ge.tbc.testautomation.tests.LocationTest"/>
+            <class name="ge.tbc.testautomation.tests.GlobalNavigationTest">
+                <methods>
+                    <include name="megaMenuElementsTest"/>
+                </methods>
+            </class>
+<!--            <class name="ge.tbc.testautomation.tests.LocationTest"/>-->
 <!--            <class name="ge.tbc.testautomation.tests.ProductDetailsTest"/>-->
 <!--            <class name="ge.tbc.testautomation.tests.SearchTest"/>-->
         </classes>
