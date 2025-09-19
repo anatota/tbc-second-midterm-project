@@ -9,4 +9,6 @@ public class LocationConstants {
     public static final double TBILISI_MAX_LAT = 41.85;
     public static final double TBILISI_MIN_LNG = 44.40;
     public static final double TBILISI_MAX_LNG = 45.00;
+    public static final String INVALID_LOCATION = "asdassad";
+    public static final String LOCATION = "დიღმის მასივი";
 }

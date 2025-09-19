@@ -20,7 +20,7 @@ public class DefaultMapSteps {
     }
 
     public boolean geoLocationIsInRange(double minLat, double maxLat, double minLng, double maxLng) {
-        locationPage.loadMarkers();
+        locationPage.getMarkers();
 
         if (locationPage.markers.isEmpty()) return false;
 
