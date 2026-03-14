@@ -1,157 +1,209 @@
-# midterm-second-project
+# Midterm Second Project
 
-Automated UI and database tests for a target web application using Java, Maven and TestNG/JUnit. The project uses a page object model for UI flows, step classes to organize test logic, and a MSSQL-backed data layer for test data preparation and verification. Tests can run locally via Maven or from IntelliJ IDEA and support cross-browser and mobile-emulation configurations.
+Automation test project for the TBC Bank website built with Java, Playwright, TestNG, Maven, and MS SQL Server.
 
-## What this project does
+This repository focuses on maintainable UI automation: page objects for selectors, step classes for reusable business flows, data providers for parameterized coverage, and TestNG suites for cross-browser and mobile execution. The project was developed on Linux Ubuntu, with MS SQL Server running in Docker as part of the local setup.
 
-- Implements end-to-end UI tests for search, locations, product details and global navigation.
-- Uses page objects and step classes to keep test code readable and maintainable.
-- Connects to a MSSQL database to insert, query and validate test data using configuration from `database.properties` and SQL scripts.
-- Supports running tests with different browser and mobile-emulation profiles.
+## What This Project Demonstrates
 
-## Tech stack
+- Playwright-based UI automation in Java.
+- Page Object Model with a separate step layer to keep tests readable.
+- Parameterized TestNG tests using both static and database-backed data providers.
+- Cross-browser execution for Chromium, Firefox, and WebKit.
+- Mobile-specific validation using a dedicated TestNG suite and mobile viewport setup.
+- Geolocation-based testing for map and branch/ATM functionality.
+- Snapshot-style accessibility validation with Playwright ARIA snapshots.
+- Working with Georgian-language UI content and assertions.
 
-- Java (JDK 11\+ recommended)
+## Covered Test Scenarios
+
+The current suite covers four main areas:
+
+- Search: validates results for multiple valid keywords and empty-state behavior for invalid ones.
+- Global navigation: checks mega menu behavior, breadcrumb correctness, and mobile hamburger navigation.
+- Locations: validates default map state, geolocation-aware marker behavior, invalid searches, and filtered branch results.
+- Product details: captures and compares an ARIA snapshot for the money transfers page.
+
+## Architecture
+
+The project is organized around a layered test design:
+
+- `pages/`: page object classes that store locators and page-specific element loading methods.
+- `steps/`: higher-level reusable actions and assertions built on top of page objects.
+- `tests/`: TestNG test classes that express scenarios in a concise way.
+- `data/`: constants, configuration, JDBC connection setup, and TestNG data providers.
+- `resources/`: database configuration and SQL scripts used for test data setup.
+
+This structure keeps selectors, behavior, and test intent separated, which makes the suite easier to extend and maintain.
+
+## Tech Stack
+
+- Java
 - Maven
-- SQL (MSSQL)
-- Test frameworks: TestNG / JUnit
-- IDE: IntelliJ IDEA on Linux (recommended)
+- Playwright for Java
+- TestNG
+- Microsoft SQL Server JDBC Driver
+- SQL Server
 
-## Repository layout
+## Project Structure
 
-- `pom.xml` \- Maven project file and dependencies
+```text
+.
+├── pom.xml
+├── cross-browser.xml
+├── mobile-emulation.xml
+├── expected_snapshot.txt
+├── src
+│   ├── main
+│   │   ├── java/ge/tbc/testautomation
+│   │   │   ├── data
+│   │   │   ├── pages
+│   │   │   └── steps
+│   │   └── resources
+│   │       ├── database.properties
+│   │       ├── Locations.sql
+│   │       └── MainScript.sql
+│   └── test/java/ge/tbc/testautomation
+│       ├── runners
+│       └── tests
+└── README.md
+```
 
-- `src/main/java` \- test helper and core automation code  
-  - `ge/tbc/testautomation/pages`  
-    - `BasePage.java` \- common WebDriver/page utilities  
-    - `SearchPage.java`, `LocationPage.java`, `SectionPage.java`, `MobileNavigationPage.java` \- page objects for application screens  
-  - `ge/tbc/testautomation/steps`  
-    - `BaseSteps.java` \- shared step utilities  
-    - `SearchSteps.java`, `LocationFilterSteps.java`, `ProductDetailsSteps.java`, `GlobalNavigationSteps.java`, `DefaultMapSteps.java` \- high-level steps used by tests  
-  - `ge/tbc/testautomation/data`  
-    - `MSSQLConnection.java` \- low-level JDBC connection helper for MSSQL  
-    - `DBConfiguration.java` \- loads DB properties from `database.properties`  
-    - `DatabaseSteps.java` \- DB-related test operations (queries, inserts, validations)  
-    - `Constants.java`, `LocationConstants.java` \- shared constants for tests  
-    - `DataSupplier.java`, `LocationDataProvider.java` \- data providers for parameterized tests  
-  - `ge/tbc/testautomation/utils` \- (reserved for utility classes, if any)
+## Key Implementation Details
 
-- `src/main/resources` \- configuration and SQL scripts  
-  - `database.properties` \- MSSQL connection properties (host, port, DB name, user, password, etc.)  
-  - `MainScript.sql` \- main DB schema and seed data script  
-  - `Locations.sql` \- supplemental data for locations
+### Test Runner
 
-- `src/test/java` \- tests and runners  
-  - `ge/tbc/testautomation/runners`  
-    - `BaseTest.java` \- base test setup (WebDriver, configuration, common hooks)  
-  - `ge/tbc/testautomation/tests`  
-    - `SearchTest.java` \- tests for search functionality  
-    - `LocationTest.java` \- tests for location filtering and map\-related flows  
-    - `ProductDetailsTest.java` \- tests for product details pages  
-    - `GlobalNavigationTest.java` \- tests for top\-level navigation
+`BaseTest` creates Playwright, launches the requested browser, and configures either desktop or mobile context based on TestNG parameters from suite XML files.
 
-- Root\-level aux files  
-  - `cross-browser.xml` \- configuration/profile for cross\-browser execution  
-  - `mobile-emulation.xml` \- configuration/profile for mobile\-emulation runs  
-  - `expected_snapshot.txt` \- reference snapshot for visual or content comparison
+### Reusable Test Design
 
-- `target/` \- Maven build output (compiled classes, test\-classes, generated sources, reports)
+Tests are intentionally short because most interaction logic lives in step classes such as:
+
+- `SearchSteps`
+- `GlobalNavigationSteps`
+- `LocationFilterSteps`
+- `DefaultMapSteps`
+- `ProductDetailsSteps`
+
+This makes the test layer easier to read and better aligned with real user flows.
+
+### Data-Driven Testing
+
+The project uses two data sources:
+
+- Static TestNG data providers in `DataSupplier` for search and breadcrumb scenarios.
+- SQL-backed location test data in `LocationDataProvider`, which reads values from `location_cases`.
+
+### Cross-Browser and Mobile Coverage
+
+- `cross-browser.xml` runs desktop scenarios against Firefox, Chromium, and WebKit.
+- `mobile-emulation.xml` runs selected scenarios with mobile viewport settings.
+
+### Database Integration
+
+Database access is configured through:
+
+- `src/main/resources/database.properties`
+- `DBConfiguration`
+- `MSSQLConnection`
+
+The location suite uses SQL Server data to drive test execution. In the local Linux Ubuntu environment for this project, the database runs in Docker, which keeps setup isolated and reproducible.
 
 ## Prerequisites
 
-- Java JDK 11\+ (or the version defined in `pom.xml`)
-- Maven 3\.6\+  
-- Running MSSQL Server instance reachable from your machine
-- Correct DB credentials configured in `src/main/resources/database.properties`
-- IntelliJ IDEA (or another Java IDE) on Linux
+Before running the suite, make sure you have:
+
+- Java installed
+- Maven installed
+- Docker installed if you want to mirror the same Linux Ubuntu-based database setup
+- SQL Server running locally or accessible from your machine
+- Playwright browser dependencies available in your environment
 
 ## Setup
 
-1. Clone the repository:
-   ```bash
-   git clone git@github.com:anatota/midterm-second-project.git
-   cd midterm-second-project
-   ```
+1. Clone the repository.
 
-2. Configure the database connection:  
-   Edit `src/main/resources/database.properties` and set:
-    - DB host and port
-    - DB name
-    - Username and password
-    - Any required JDBC options (e.g., SSL, timeouts)
+```bash
+git clone git@github.com:anatota/midterm-second-project.git
+cd midterm-second-project
+```
 
-3. Prepare the database (if not already prepared):  
-   Run these scripts against your MSSQL instance:
-    - `src/main/resources/MainScript.sql`
-    - `src/main/resources/Locations.sql`
+2. Configure database access in `src/main/resources/database.properties`.
 
-4. Import into IntelliJ IDEA (optional but recommended):
-    - Open IntelliJ IDEA
-    - `File \> Open...` and select the `pom.xml`
-    - Let IntelliJ import it as a Maven project
+Example:
 
-## Build and run tests
+```properties
+jdbc.url=jdbc:sqlserver://localhost:1433;databaseName=LOCATIONS_DB;trustServerCertificate=true;
+jdbc.username=Real_User
+jdbc.password=RealUser123#
+```
 
-From the project root:
+3. Start MS SQL Server.
 
-- Clean and run the full test suite:
-  ```bash
-  mvn clean test
-  ```
+On Linux Ubuntu, this project uses Docker to run the SQL Server instance locally.
 
-- Run a specific test class (for example, `SearchTest`):
-  ```bash
-  mvn -Dtest=SearchTest test
-  ```
+4. Prepare the SQL Server data used by the project.
 
-- Run a specific test method:
-  ```bash
-  mvn -Dtest=SearchTest#testMethodName test
-  ```
+- `src/main/resources/MainScript.sql`
+- `src/main/resources/Locations.sql`
 
-- Use a specific Maven profile (if you define any profiles in `pom.xml`):
-  ```bash
-  mvn -P<profile-name> clean test
-  ```
+5. Install project dependencies and Playwright requirements in your local environment if they are not already available.
 
-In IntelliJ IDEA:
+## Running Tests
 
-- Right\-click a test class (for example, `src/test/java/ge/tbc/testautomation/tests/SearchTest.java`) and select `Run` to execute only that class.
-- Right\-click the `tests` package to run all tests in that package.
-- Use or create run configurations to customize JVM options, system properties, or test filters.
+Run the full suite:
 
-## Configuration
+```bash
+mvn test
+```
 
-- Database configuration is controlled by:
-    - `src/main/resources/database.properties`
-    - `ge/tbc/testautomation/data/DBConfiguration.java`
-    - `ge/tbc/testautomation/data/MSSQLConnection.java`
+Run one test class:
 
-- Cross\-browser and mobile\-emulation settings:
-    - `cross-browser.xml`
-    - `mobile-emulation.xml`
+```bash
+mvn -Dtest=SearchTest test
+```
 
-Update these files to match your local environment or CI configuration.
+Run a single test method:
 
-## Test reports and artifacts
+```bash
+mvn -Dtest=GlobalNavigationTest#megaMenuElementsTest test
+```
 
-- Maven Surefire/Failsafe reports are generated under:
-    - `target/surefire-reports`
-    - `target/failsafe-reports` (if integration tests are configured)
+Run the desktop cross-browser suite:
 
-Review these reports for detailed failure information and stack traces.
+```bash
+mvn test -Dsurefire.suiteXmlFiles=cross-browser.xml
+```
 
-## Contributing
+Run the mobile suite:
 
-1. Create a branch from `main` for your change:
-   ```bash
-   git checkout -b feature/short-description
-   ```
-2. Make your changes and add/update tests as needed.
-3. Run `mvn clean test` to ensure all tests pass.
-4. Open a pull request with a clear description of the changes.
+```bash
+mvn test -Dsurefire.suiteXmlFiles=mobile-emulation.xml
+```
 
-## License
+## Snapshot Testing
 
-License information is not explicitly defined in this repository.  
-For questions, contact GitHub user `anatota`.
+`ProductDetailsTest` works with `expected_snapshot.txt` and compares the page body against an ARIA snapshot.
+
+This is useful for catching structural regressions in important UI content without relying only on visual checks.
+
+## Notes
+
+- The suite currently launches browsers in non-headless mode and uses `slowMo` in `BaseTest`, which is useful for local debugging. For production-level running in headless mode, comment the corresponding line in BaseTest.java (// remove this) and un-comment the next line.
+- Some suite XML entries are intentionally commented out, so the XML files act as configurable execution templates.
+- The project includes database utility classes beyond the currently active test flows, which suggests room for expanding DB validation coverage.
+
+## Skills Highlighted
+
+This project highlights practical automation engineering skills:
+
+- test architecture instead of one-file automation scripts
+- maintainable abstraction layers
+- multi-browser execution
+- mobile-aware testing
+- data-driven design
+- integration between UI automation and backend test data
+
+## Author
+
+Ana Totadze
